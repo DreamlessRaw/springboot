@@ -1,0 +1,20 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: demo
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://172.17.0.4:3306/esDB?useSLL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+  redis:
+    database: 0
+    host: 172.17.0.2
+    port: 6379
+    timeout: 300
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.example.demo.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
