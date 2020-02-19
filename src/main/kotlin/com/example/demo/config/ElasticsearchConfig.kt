@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.elasticsearch.client.ClientConfiguration
 import org.springframework.data.elasticsearch.client.RestClients
+import javax.annotation.Resource
 
 /**
  * 使用es环境版本一定要和springboot对应上
@@ -13,10 +14,14 @@ import org.springframework.data.elasticsearch.client.RestClients
  */
 @Configuration
 class ElasticsearchConfig {
+
+    @Resource
+    lateinit var appConfig: AppConfig
+
     @Bean
     fun restClient(): RestHighLevelClient {
         val clientConfiguration = ClientConfiguration.builder()
-                .connectedTo("192.168.0.166:9200")
+                .connectedTo(appConfig.esHost)
                 .build()
         return RestClients.create(clientConfiguration).rest()
     }
